@@ -1,5 +1,6 @@
 ; Keywords
 ["let" "pub" "fn" "enum" "view" "cc" "rotate" "to" "global"] @keyword
+(matrix_keyword) @keyword
 
 ; Visibility modifiers
 ["input" "output" "internal"] @keyword
@@ -44,4 +45,3 @@
 
 ; Comments
 (comment) @comment
-

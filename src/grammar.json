@@ -91,6 +91,18 @@
           "value": "="
         },
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "matrix_keyword"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "SYMBOL",
           "name": "_expression"
         },
@@ -680,6 +692,10 @@
           "value": "/"
         }
       ]
+    },
+    "matrix_keyword": {
+      "type": "STRING",
+      "value": "mat"
     },
     "literal": {
       "type": "PREC",

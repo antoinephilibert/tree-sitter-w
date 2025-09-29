@@ -41,7 +41,13 @@ module.exports = grammar({
     // Définitions des différents types de 'statements'
     coherence_check: $ => seq('cc', $.identifier, ';'),
     view_assignment: $ => seq('view', $.identifier, repeat1($.identifier), ';'),
-    assignment: $ => seq($.identifier, '=', $._expression, ';'),
+    assignment: $ => seq(
+      $.identifier,
+      '=',
+      optional($.matrix_keyword),
+      $._expression,
+      ';'
+    ),
 
     // Déclaration d'énumération
     enum_declaration: $ => seq(
@@ -142,6 +148,8 @@ module.exports = grammar({
     )),
 
     operator: $ => choice('+', '-', '*', '/'),
+
+    matrix_keyword: $ => 'mat',
 
     literal: $ => prec(PREC.assign, choice(
       $._value,

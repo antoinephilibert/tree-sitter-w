@@ -86,6 +86,10 @@
           "named": true
         },
         {
+          "type": "matrix_keyword",
+          "named": true
+        },
+        {
           "type": "parenthesized_expression",
           "named": true
         }
@@ -919,6 +923,10 @@
   {
     "type": "let",
     "named": false
+  },
+  {
+    "type": "matrix_keyword",
+    "named": true
   },
   {
     "type": "output",
