@@ -18,11 +18,19 @@
 
 ; Ranges and arrays
 (range_value) @number
-(array_value "{" @punctuation.bracket "}" @punctuation.bracket)
-(complex_value "{" @punctuation.bracket "}" @punctuation.bracket)
+
+; Braces
+[(left_brace) (right_brace) (left_paren) (right_paren) (left_bracket) (right_bracket)] @punctuation.bracket
 
 ; Operators
-[(operator) "=" "->" "," ":"] @operator
+[(operator) "=" "->" ":"] @operator
+
+; Delimiters
+[(comma) (semicolon) (dot)] @punctuation.delimiter
+
+; External reference
+(external_module) @module
+(external_identifier) @constant
 
 ; Identifiers
 (identifier) @variable
@@ -40,8 +48,6 @@
 ; Function calls
 (function_call
   name: (identifier) @function.call)
-(global_function_call
-  "." @punctuation.delimiter)
 
 ; Comments
 (comment) @comment

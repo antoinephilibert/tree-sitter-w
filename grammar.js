@@ -39,26 +39,26 @@ module.exports = grammar({
     ),
 
     // Définitions des différents types de 'statements'
-    coherence_check: $ => seq('cc', $.identifier, ';'),
-    view_assignment: $ => seq('view', $.identifier, repeat1($.identifier), ';'),
+    coherence_check: $ => seq('cc', $.identifier, $.semicolon),
+    view_assignment: $ => seq('view', $.identifier, repeat1($.identifier), $.semicolon),
     assignment: $ => seq(
       $.identifier,
       '=',
       optional($.matrix_keyword),
       $._expression,
-      ';'
+      $.semicolon
     ),
 
     // Déclaration d'énumération
     enum_declaration: $ => seq(
       'enum',
       field('name', $.identifier),
-      '{',
+      $.left_brace,
       optional(seq(
-        sepBy1(',', $.identifier),
-        optional(',')
+        sepBy1($.comma, $.identifier),
+        optional($.comma)
       )),
-      '}'
+      $.right_brace
     ),
 
     // Déclaration de variable
@@ -69,7 +69,7 @@ module.exports = grammar({
       optional($.rotate_to),
       ':',
       $.variable_assignment,
-      ';'
+      $.semicolon
     ),
 
     rotate_to: $ => seq('rotate', 'to', $.identifier),
@@ -91,12 +91,12 @@ module.exports = grammar({
     ),
 
     parameters: $ => seq(
-      '(',
+      $.left_paren,
       optional(seq(
-        sepBy1(',', $.parameter),
-        optional(',')
+        sepBy1($.comma, $.parameter),
+        optional($.comma)
       )),
-      ')'
+      $.right_paren
     ),
 
     parameter: $ => seq(
@@ -106,7 +106,7 @@ module.exports = grammar({
     ),
 
     return_type: $ => seq('->', $._type),
-    function_body: $ => seq('{', repeat1($.string_value), '}'),
+    function_body: $ => seq($.left_brace, repeat1($.string_value), $.right_brace),
 
     // Gestion des types
     _type: $ => choice(
@@ -139,7 +139,7 @@ module.exports = grammar({
       $.parenthesized_expression
     ),
 
-    parenthesized_expression: $ => seq('(', $._expression, ')'),
+    parenthesized_expression: $ => seq($.left_paren, $._expression, $.right_paren),
 
     binary_expression: $ => prec.left(PREC.binary, seq(
       field('left', $._expression),
@@ -173,36 +173,37 @@ module.exports = grammar({
     // Appels de fonction
     function_call: $ => seq(
       field('name', $.identifier),
-      '(',
-      optional(sepBy(',', $.literal)),
-      ')'
+      $.left_paren,
+      optional(sepBy($.comma, $.literal)),
+      $.right_paren
     ),
 
     global_function_call: $ => seq(
       'global',
-      '.',
+      $.dot,
       $.function_call
     ),
 
-    external_variable: $ => seq('@', $.identifier, '.', $.identifier),
+    external_module: $ => seq('@', alias($.identifier, $.module_identifier)),
+    external_variable: $ => seq($.external_module, $.dot, alias($.identifier, $.external_identifier)),
 
     // Valeurs littérales
     array_value: $ => seq(
-      '{',
+      $.left_brace,
       optional(seq(
-        sepBy1(',', $._value),
-        optional(',')
+        sepBy1($.comma, $._value),
+        optional($.comma)
       )),
-      '}'
+      $.right_brace
     ),
 
     complex_value: $ => seq(
-      '{',
-       optional(seq(
-        sepBy1(',', $.key_value_pair),
-        optional(',')
+      $.left_brace,
+      optional(seq(
+        sepBy1($.comma, $.key_value_pair),
+        optional($.comma)
       )),
-      '}'
+      $.right_brace
     ),
 
     key_value_pair: $ => seq(
@@ -211,14 +212,30 @@ module.exports = grammar({
         field('value', $._value)
     ),
 
-    enum_value: $ => seq($.identifier, '.', $.identifier),
-    range_value: $ => seq('[', $.integer_value, '/', $.integer_value, ']'),
+    enum_value: $ => seq($.identifier, $.dot, $.identifier),
+    range_value: $ => seq(
+      $.left_bracket,
+      $.integer_value,
+      '/',
+      $.integer_value,
+      $.right_bracket
+    ),
 
     // --- TOKENS ---
     // Les tokens sont les unités lexicales de base reconnues par l'analyseur.
     // Ils sont souvent définis avec des expressions régulières.
 
     comment: $ => token(seq('//', /.*/)),
+
+    left_brace: $ => '{',
+    right_brace: $ => '}',
+    left_paren: $ => '(',
+    right_paren: $ => ')',
+    left_bracket: $ => '[',
+    right_bracket: $ => ']',
+    comma: $ => ',',
+    dot: $ => '.',
+    semicolon: $ => ';',
 
     identifier: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
 
