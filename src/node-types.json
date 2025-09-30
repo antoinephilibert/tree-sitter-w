@@ -28,7 +28,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "array_value",
@@ -55,7 +55,15 @@
           "named": true
         },
         {
+          "type": "left_brace",
+          "named": true
+        },
+        {
           "type": "range_value",
+          "named": true
+        },
+        {
+          "type": "right_brace",
           "named": true
         },
         {
@@ -202,10 +210,18 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "key_value_pair",
+          "named": true
+        },
+        {
+          "type": "left_brace",
+          "named": true
+        },
+        {
+          "type": "right_brace",
           "named": true
         }
       ]
@@ -228,10 +244,18 @@
     },
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "left_brace",
+          "named": true
+        },
+        {
+          "type": "right_brace",
           "named": true
         }
       ]
@@ -294,6 +318,14 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "left_brace",
+          "named": true
+        },
+        {
+          "type": "right_brace",
+          "named": true
+        },
         {
           "type": "string_value",
           "named": true
@@ -940,6 +972,10 @@
     "named": false
   },
   {
+    "type": "left_brace",
+    "named": true
+  },
+  {
     "type": "let",
     "named": false
   },
@@ -968,6 +1004,10 @@
     "named": false
   },
   {
+    "type": "right_brace",
+    "named": true
+  },
+  {
     "type": "rotate",
     "named": false
   },
@@ -993,14 +1033,6 @@
   },
   {
     "type": "view",
-    "named": false
-  },
-  {
-    "type": "{",
-    "named": false
-  },
-  {
-    "type": "}",
     "named": false
   }
 ]

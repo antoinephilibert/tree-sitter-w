@@ -53,12 +53,12 @@ module.exports = grammar({
     enum_declaration: $ => seq(
       'enum',
       field('name', $.identifier),
-      '{',
+      $.left_brace,
       optional(seq(
         sepBy1(',', $.identifier),
         optional(',')
       )),
-      '}'
+      $.right_brace
     ),
 
     // Déclaration de variable
@@ -106,7 +106,7 @@ module.exports = grammar({
     ),
 
     return_type: $ => seq('->', $._type),
-    function_body: $ => seq('{', repeat1($.string_value), '}'),
+    function_body: $ => seq($.left_brace, repeat1($.string_value), $.right_brace),
 
     // Gestion des types
     _type: $ => choice(
@@ -189,21 +189,21 @@ module.exports = grammar({
 
     // Valeurs littérales
     array_value: $ => seq(
-      '{',
+      $.left_brace,
       optional(seq(
         sepBy1(',', $._value),
         optional(',')
       )),
-      '}'
+      $.right_brace
     ),
 
     complex_value: $ => seq(
-      '{',
-       optional(seq(
+      $.left_brace,
+      optional(seq(
         sepBy1(',', $.key_value_pair),
         optional(',')
       )),
-      '}'
+      $.right_brace
     ),
 
     key_value_pair: $ => seq(
@@ -220,6 +220,9 @@ module.exports = grammar({
     // Ils sont souvent définis avec des expressions régulières.
 
     comment: $ => token(seq('//', /.*/)),
+
+    left_brace: $ => '{',
+    right_brace: $ => '}',
 
     identifier: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
 

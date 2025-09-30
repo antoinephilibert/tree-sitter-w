@@ -18,8 +18,9 @@
 
 ; Ranges and arrays
 (range_value) @number
-(array_value "{" @punctuation.bracket "}" @punctuation.bracket)
-(complex_value "{" @punctuation.bracket "}" @punctuation.bracket)
+
+; Braces
+[(left_brace) (right_brace)] @punctuation.bracket
 
 ; Operators
 [(operator) "=" "->" "," ":"] @operator
