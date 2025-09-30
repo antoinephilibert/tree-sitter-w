@@ -20,7 +20,7 @@
 (range_value) @number
 
 ; Braces
-[(left_brace) (right_brace)] @punctuation.bracket
+[(left_brace) (right_brace) (left_paren) (right_paren) (left_bracket) (right_bracket)] @punctuation.bracket
 
 ; Operators
 [(operator) "=" "->" ":"] @operator

@@ -91,12 +91,12 @@ module.exports = grammar({
     ),
 
     parameters: $ => seq(
-      '(',
+      $.left_paren,
       optional(seq(
         sepBy1($.comma, $.parameter),
         optional($.comma)
       )),
-      ')'
+      $.right_paren
     ),
 
     parameter: $ => seq(
@@ -139,7 +139,7 @@ module.exports = grammar({
       $.parenthesized_expression
     ),
 
-    parenthesized_expression: $ => seq('(', $._expression, ')'),
+    parenthesized_expression: $ => seq($.left_paren, $._expression, $.right_paren),
 
     binary_expression: $ => prec.left(PREC.binary, seq(
       field('left', $._expression),
@@ -173,9 +173,9 @@ module.exports = grammar({
     // Appels de fonction
     function_call: $ => seq(
       field('name', $.identifier),
-      '(',
+      $.left_paren,
       optional(sepBy($.comma, $.literal)),
-      ')'
+      $.right_paren
     ),
 
     global_function_call: $ => seq(
@@ -213,7 +213,13 @@ module.exports = grammar({
     ),
 
     enum_value: $ => seq($.identifier, $.dot, $.identifier),
-    range_value: $ => seq('[', $.integer_value, '/', $.integer_value, ']'),
+    range_value: $ => seq(
+      $.left_bracket,
+      $.integer_value,
+      '/',
+      $.integer_value,
+      $.right_bracket
+    ),
 
     // --- TOKENS ---
     // Les tokens sont les unités lexicales de base reconnues par l'analyseur.
@@ -223,6 +229,10 @@ module.exports = grammar({
 
     left_brace: $ => '{',
     right_brace: $ => '}',
+    left_paren: $ => '(',
+    right_paren: $ => ')',
+    left_bracket: $ => '[',
+    right_bracket: $ => ']',
     comma: $ => ',',
     dot: $ => '.',
     semicolon: $ => ';',

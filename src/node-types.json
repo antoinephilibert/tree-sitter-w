@@ -378,14 +378,22 @@
     },
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "comma",
           "named": true
         },
         {
+          "type": "left_paren",
+          "named": true
+        },
+        {
           "type": "literal",
+          "named": true
+        },
+        {
+          "type": "right_paren",
           "named": true
         }
       ]
@@ -614,14 +622,22 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "comma",
           "named": true
         },
         {
+          "type": "left_paren",
+          "named": true
+        },
+        {
           "type": "parameter",
+          "named": true
+        },
+        {
+          "type": "right_paren",
           "named": true
         }
       ]
@@ -632,11 +648,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "left_paren",
           "named": true
         },
         {
@@ -645,6 +665,10 @@
         },
         {
           "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "right_paren",
           "named": true
         }
       ]
@@ -665,6 +689,14 @@
       "types": [
         {
           "type": "integer_value",
+          "named": true
+        },
+        {
+          "type": "left_bracket",
+          "named": true
+        },
+        {
+          "type": "right_bracket",
           "named": true
         }
       ]
@@ -880,14 +912,6 @@
     "fields": {}
   },
   {
-    "type": "(",
-    "named": false
-  },
-  {
-    "type": ")",
-    "named": false
-  },
-  {
     "type": "*",
     "named": false
   },
@@ -928,15 +952,7 @@
     "named": false
   },
   {
-    "type": "[",
-    "named": false
-  },
-  {
     "type": "[]",
-    "named": false
-  },
-  {
-    "type": "]",
     "named": false
   },
   {
@@ -1020,6 +1036,14 @@
     "named": true
   },
   {
+    "type": "left_bracket",
+    "named": true
+  },
+  {
+    "type": "left_paren",
+    "named": true
+  },
+  {
     "type": "let",
     "named": false
   },
@@ -1049,6 +1073,14 @@
   },
   {
     "type": "right_brace",
+    "named": true
+  },
+  {
+    "type": "right_bracket",
+    "named": true
+  },
+  {
+    "type": "right_paren",
     "named": true
   },
   {

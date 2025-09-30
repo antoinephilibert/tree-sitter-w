@@ -370,8 +370,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "("
+          "type": "SYMBOL",
+          "name": "left_paren"
         },
         {
           "type": "CHOICE",
@@ -424,8 +424,8 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": ")"
+          "type": "SYMBOL",
+          "name": "right_paren"
         }
       ]
     },
@@ -626,16 +626,16 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "("
+          "type": "SYMBOL",
+          "name": "left_paren"
         },
         {
           "type": "SYMBOL",
           "name": "_expression"
         },
         {
-          "type": "STRING",
-          "value": ")"
+          "type": "SYMBOL",
+          "name": "right_paren"
         }
       ]
     },
@@ -775,8 +775,8 @@
           }
         },
         {
-          "type": "STRING",
-          "value": "("
+          "type": "SYMBOL",
+          "name": "left_paren"
         },
         {
           "type": "CHOICE",
@@ -820,8 +820,8 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": ")"
+          "type": "SYMBOL",
+          "name": "right_paren"
         }
       ]
     },
@@ -1049,8 +1049,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "["
+          "type": "SYMBOL",
+          "name": "left_bracket"
         },
         {
           "type": "SYMBOL",
@@ -1065,8 +1065,8 @@
           "name": "integer_value"
         },
         {
-          "type": "STRING",
-          "value": "]"
+          "type": "SYMBOL",
+          "name": "right_bracket"
         }
       ]
     },
@@ -1093,6 +1093,22 @@
     "right_brace": {
       "type": "STRING",
       "value": "}"
+    },
+    "left_paren": {
+      "type": "STRING",
+      "value": "("
+    },
+    "right_paren": {
+      "type": "STRING",
+      "value": ")"
+    },
+    "left_bracket": {
+      "type": "STRING",
+      "value": "["
+    },
+    "right_bracket": {
+      "type": "STRING",
+      "value": "]"
     },
     "comma": {
       "type": "STRING",
