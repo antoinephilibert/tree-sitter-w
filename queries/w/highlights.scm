@@ -24,6 +24,9 @@
 ; Operators
 [(operator) "=" "->" "," ":"] @operator
 
+; External reference
+(external_module) @module
+
 ; Identifiers
 (identifier) @variable
 

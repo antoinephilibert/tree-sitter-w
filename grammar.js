@@ -184,7 +184,8 @@ module.exports = grammar({
       $.function_call
     ),
 
-    external_variable: $ => seq('@', $.identifier, '.', $.identifier),
+    external_module: $ => seq('@', alias($.identifier, $.module_identifier)),
+    external_variable: $ => seq($.external_module, '.', $.identifier),
 
     // Valeurs littérales
     array_value: $ => seq(

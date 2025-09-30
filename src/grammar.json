@@ -842,7 +842,7 @@
         }
       ]
     },
-    "external_variable": {
+    "external_module": {
       "type": "SEQ",
       "members": [
         {
@@ -850,8 +850,22 @@
           "value": "@"
         },
         {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          },
+          "named": true,
+          "value": "module_identifier"
+        }
+      ]
+    },
+    "external_variable": {
+      "type": "SEQ",
+      "members": [
+        {
           "type": "SYMBOL",
-          "name": "identifier"
+          "name": "external_module"
         },
         {
           "type": "STRING",
