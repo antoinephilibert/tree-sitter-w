@@ -30,6 +30,7 @@
 
 ; External reference
 (external_module) @module
+(external_identifier) @constant
 
 ; Identifiers
 (identifier) @variable

@@ -328,11 +328,11 @@
           "named": true
         },
         {
-          "type": "external_module",
+          "type": "external_identifier",
           "named": true
         },
         {
-          "type": "identifier",
+          "type": "external_module",
           "named": true
         }
       ]
@@ -994,6 +994,10 @@
   {
     "type": "enumDecision",
     "named": false
+  },
+  {
+    "type": "external_identifier",
+    "named": true
   },
   {
     "type": "false",
