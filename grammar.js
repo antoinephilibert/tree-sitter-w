@@ -39,14 +39,14 @@ module.exports = grammar({
     ),
 
     // Définitions des différents types de 'statements'
-    coherence_check: $ => seq('cc', $.identifier, ';'),
-    view_assignment: $ => seq('view', $.identifier, repeat1($.identifier), ';'),
+    coherence_check: $ => seq('cc', $.identifier, $.semicolon),
+    view_assignment: $ => seq('view', $.identifier, repeat1($.identifier), $.semicolon),
     assignment: $ => seq(
       $.identifier,
       '=',
       optional($.matrix_keyword),
       $._expression,
-      ';'
+      $.semicolon
     ),
 
     // Déclaration d'énumération
@@ -55,8 +55,8 @@ module.exports = grammar({
       field('name', $.identifier),
       $.left_brace,
       optional(seq(
-        sepBy1(',', $.identifier),
-        optional(',')
+        sepBy1($.comma, $.identifier),
+        optional($.comma)
       )),
       $.right_brace
     ),
@@ -69,7 +69,7 @@ module.exports = grammar({
       optional($.rotate_to),
       ':',
       $.variable_assignment,
-      ';'
+      $.semicolon
     ),
 
     rotate_to: $ => seq('rotate', 'to', $.identifier),
@@ -93,8 +93,8 @@ module.exports = grammar({
     parameters: $ => seq(
       '(',
       optional(seq(
-        sepBy1(',', $.parameter),
-        optional(',')
+        sepBy1($.comma, $.parameter),
+        optional($.comma)
       )),
       ')'
     ),
@@ -174,25 +174,25 @@ module.exports = grammar({
     function_call: $ => seq(
       field('name', $.identifier),
       '(',
-      optional(sepBy(',', $.literal)),
+      optional(sepBy($.comma, $.literal)),
       ')'
     ),
 
     global_function_call: $ => seq(
       'global',
-      '.',
+      $.dot,
       $.function_call
     ),
 
     external_module: $ => seq('@', alias($.identifier, $.module_identifier)),
-    external_variable: $ => seq($.external_module, '.', $.identifier),
+    external_variable: $ => seq($.external_module, $.dot, $.identifier),
 
     // Valeurs littérales
     array_value: $ => seq(
       $.left_brace,
       optional(seq(
-        sepBy1(',', $._value),
-        optional(',')
+        sepBy1($.comma, $._value),
+        optional($.comma)
       )),
       $.right_brace
     ),
@@ -200,8 +200,8 @@ module.exports = grammar({
     complex_value: $ => seq(
       $.left_brace,
       optional(seq(
-        sepBy1(',', $.key_value_pair),
-        optional(',')
+        sepBy1($.comma, $.key_value_pair),
+        optional($.comma)
       )),
       $.right_brace
     ),
@@ -212,7 +212,7 @@ module.exports = grammar({
         field('value', $._value)
     ),
 
-    enum_value: $ => seq($.identifier, '.', $.identifier),
+    enum_value: $ => seq($.identifier, $.dot, $.identifier),
     range_value: $ => seq('[', $.integer_value, '/', $.integer_value, ']'),
 
     // --- TOKENS ---
@@ -223,6 +223,9 @@ module.exports = grammar({
 
     left_brace: $ => '{',
     right_brace: $ => '}',
+    comma: $ => ',',
+    dot: $ => '.',
+    semicolon: $ => ';',
 
     identifier: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
 

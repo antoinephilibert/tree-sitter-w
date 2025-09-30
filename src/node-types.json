@@ -39,6 +39,10 @@
           "named": true
         },
         {
+          "type": "comma",
+          "named": true
+        },
+        {
           "type": "complex_value",
           "named": true
         },
@@ -99,6 +103,10 @@
         },
         {
           "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "semicolon",
           "named": true
         }
       ]
@@ -189,11 +197,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "semicolon",
           "named": true
         }
       ]
@@ -212,6 +224,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "comma",
+          "named": true
+        },
         {
           "type": "key_value_pair",
           "named": true
@@ -247,6 +263,10 @@
       "required": true,
       "types": [
         {
+          "type": "comma",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -269,6 +289,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "dot",
+          "named": true
+        },
         {
           "type": "identifier",
           "named": true
@@ -299,6 +323,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "dot",
+          "named": true
+        },
         {
           "type": "external_module",
           "named": true
@@ -352,6 +380,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "comma",
+          "named": true
+        },
         {
           "type": "literal",
           "named": true
@@ -410,9 +442,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "dot",
+          "named": true
+        },
         {
           "type": "function_call",
           "named": true
@@ -580,6 +616,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "comma",
+          "named": true
+        },
         {
           "type": "parameter",
           "named": true
@@ -801,6 +841,10 @@
           "named": true
         },
         {
+          "type": "semicolon",
+          "named": true
+        },
+        {
           "type": "variable_assignment",
           "named": true
         },
@@ -821,6 +865,10 @@
       "types": [
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "semicolon",
           "named": true
         }
       ]
@@ -848,10 +896,6 @@
     "named": false
   },
   {
-    "type": ",",
-    "named": false
-  },
-  {
     "type": "-",
     "named": false
   },
@@ -860,19 +904,11 @@
     "named": false
   },
   {
-    "type": ".",
-    "named": false
-  },
-  {
     "type": "/",
     "named": false
   },
   {
     "type": ":",
-    "named": false
-  },
-  {
-    "type": ";",
     "named": false
   },
   {
@@ -916,12 +952,20 @@
     "named": false
   },
   {
+    "type": "comma",
+    "named": true
+  },
+  {
     "type": "comment",
     "named": true
   },
   {
     "type": "dbl",
     "named": false
+  },
+  {
+    "type": "dot",
+    "named": true
   },
   {
     "type": "double_value",
@@ -1010,6 +1054,10 @@
   {
     "type": "rotate",
     "named": false
+  },
+  {
+    "type": "semicolon",
+    "named": true
   },
   {
     "type": "str",

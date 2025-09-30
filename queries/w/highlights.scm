@@ -23,7 +23,10 @@
 [(left_brace) (right_brace)] @punctuation.bracket
 
 ; Operators
-[(operator) "=" "->" "," ":"] @operator
+[(operator) "=" "->" ":"] @operator
+
+; Delimiters
+[(comma) (semicolon) (dot)] @punctuation.delimiter
 
 ; External reference
 (external_module) @module
@@ -44,8 +47,6 @@
 ; Function calls
 (function_call
   name: (identifier) @function.call)
-(global_function_call
-  "." @punctuation.delimiter)
 
 ; Comments
 (comment) @comment
