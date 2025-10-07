@@ -45,6 +45,8 @@
   name: (identifier) @parameter)
 (enum_declaration
   name: (identifier) @type)
+(view_assignment
+  name: (identifier) @function)
 
 ; Function calls
 (function_call

@@ -40,7 +40,12 @@ module.exports = grammar({
 
     // Définitions des différents types de 'statements'
     coherence_check: $ => seq('cc', $.identifier, $.semicolon),
-    view_assignment: $ => seq('view', $.identifier, repeat1($.identifier), $.semicolon),
+    view_assignment: $ => seq(
+      'view',
+      field('name', $.identifier),
+      repeat1($.identifier),
+      $.semicolon
+    ),
     assignment: $ => seq(
       $.identifier,
       '=',
