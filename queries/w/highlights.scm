@@ -1,4 +1,5 @@
 ; Keywords
+[(if_keyword) (else_keyword) (match_keyword)] @keyword
 ["let" "pub" "fn" "enum" "view" "cc" "rotate" "to" "global"] @keyword
 (matrix_keyword) @keyword
 
@@ -23,7 +24,7 @@
 [(left_brace) (right_brace) (left_paren) (right_paren) (left_bracket) (right_bracket)] @punctuation.bracket
 
 ; Operators
-[(operator) "=" "->" ":"] @operator
+[(operator) "=" "->" ":" (fat_arrow)] @operator
 
 ; Delimiters
 [(comma) (semicolon) (dot)] @punctuation.delimiter

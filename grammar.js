@@ -134,9 +134,60 @@ module.exports = grammar({
 
     // Expressions et littéraux
     _expression: $ => choice(
+      $.if_expression,
+      $.match_expression,
       $.literal,
       $.binary_expression,
       $.parenthesized_expression
+    ),
+
+    if_expression: $ => prec.right(PREC.assign, seq(
+      $.if_keyword,
+      field('condition', $._expression),
+      field('consequence', $.block),
+      repeat(field('else_if', $.else_if_clause)),
+      optional(field('alternative', $.else_clause))
+    )),
+
+    else_if_clause: $ => seq(
+      $.else_keyword,
+      $.if_keyword,
+      field('condition', $._expression),
+      field('consequence', $.block)
+    ),
+
+    else_clause: $ => seq(
+      $.else_keyword,
+      field('alternative', $.block)
+    ),
+
+    block: $ => seq(
+      $.left_brace,
+      optional($._expression),
+      $.right_brace
+    ),
+
+    match_expression: $ => seq(
+      $.match_keyword,
+      field('value', $._expression),
+      $.left_brace,
+      optional(seq(
+        sepBy1($.comma, $.match_arm),
+        optional($.comma)
+      )),
+      $.right_brace
+    ),
+
+    match_arm: $ => seq(
+      field('pattern', $.match_pattern),
+      $.fat_arrow,
+      field('body', $._expression)
+    ),
+
+    match_pattern: $ => choice(
+      $.enum_value,
+      '_',
+      $.identifier
     ),
 
     parenthesized_expression: $ => seq($.left_paren, $._expression, $.right_paren),
@@ -150,6 +201,11 @@ module.exports = grammar({
     operator: $ => choice('+', '-', '*', '/'),
 
     matrix_keyword: $ => 'mat',
+
+    if_keyword: $ => 'if',
+    else_keyword: $ => 'else',
+    match_keyword: $ => 'match',
+    fat_arrow: $ => '=>',
 
     literal: $ => prec(PREC.assign, choice(
       $._value,

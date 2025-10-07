@@ -1,0 +1,16 @@
+enum Test { A,B,C }
+let test: Test = Test.A;
+let i: int;
+
+// MATCH
+i = match test {
+    Test.A => 1,
+    Test.B => 2,
+    _ => 0
+};
+
+
+let k: int;
+
+// IF (ELSE)
+k = if i == 0 { 1 } else if i > 1 { 5 } else { 10 };
