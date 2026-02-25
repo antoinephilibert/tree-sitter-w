@@ -1,6 +1,6 @@
 ; Keywords
 [(if_keyword) (else_keyword) (match_keyword)] @keyword
-["let" "pub" "fn" "enum" "view" "cc" "rotate" "to" "global"] @keyword
+["let" "pub" "fn" "enum" "view" "cc" "optional" "rotate" "to" "global"] @keyword
 (matrix_keyword) @keyword
 
 ; Visibility modifiers

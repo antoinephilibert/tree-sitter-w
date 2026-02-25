@@ -929,6 +929,25 @@
     "fields": {}
   },
   {
+    "type": "optional",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "semicolon",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "parameter",
     "named": true,
     "fields": {
@@ -1116,6 +1135,10 @@
         },
         {
           "type": "function_declaration",
+          "named": true
+        },
+        {
+          "type": "optional",
           "named": true
         },
         {
@@ -1443,6 +1466,10 @@
   {
     "type": "module_identifier",
     "named": true
+  },
+  {
+    "type": "optional",
+    "named": false
   },
   {
     "type": "output",

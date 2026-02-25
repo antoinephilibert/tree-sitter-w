@@ -35,11 +35,13 @@ module.exports = grammar({
       $.assignment,
       $.view_assignment,
       $.enum_declaration,
-      $.coherence_check
+      $.coherence_check,
+      $.optional,
     ),
 
     // Définitions des différents types de 'statements'
     coherence_check: $ => seq('cc', $.identifier, $.semicolon),
+    optional: $ => seq('optional', $.identifier, $.semicolon),
     view_assignment: $ => seq(
       'view',
       field('name', $.identifier),
