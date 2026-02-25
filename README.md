@@ -23,13 +23,10 @@ npx tree-sitter parse --scope source.w --config-path /tmp/ts-config.json path/to
 npx tree-sitter query --scope source.w --config-path /tmp/ts-config.json queries/w/highlights.scm path/to/file.w
 ```
 
-## Etat actuel
+4. Dans Neovim :
 
-Le mot-cle `optional` est deja present dans:
-- `grammar.js` (regle `optional` et integration dans `_statement`)
-- `queries/w/highlights.scm` (capture `@keyword`)
+Mettre à jour Tree-sitter > :TSUpdate
 
-Si tu as une erreur sur `optional` dans `highlights.scm`, c'est souvent un parser non regenere.
 
 ## Prerequis
 
